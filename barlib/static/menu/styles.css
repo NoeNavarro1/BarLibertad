@@ -1,0 +1,109 @@
+/* static/menu/styles.css */
+
+body {
+    background-color: #f4f4f9; /* Un color de fondo claro */
+}
+
+/* static/menu/styles.css */
+
+.sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    border-right: 1px solid #dddddd;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    align-items: center;
+}
+
+
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    padding: 15px 10px;
+}
+
+.nav-link {
+    border-radius: 20px; /* Bordes redondeados */
+}
+
+.textMenu{
+    color: #fd6d19;
+}
+
+.nav-link:hover {
+    background-color: #ececec; /* Cambia el degradado al pasar el ratón */
+}
+
+.nav-link.active {
+    background-color: #007bff; /* Color de fondo para el enlace activo */
+    color: white; /* Color del texto activo */
+}
+
+
+.sidebar .collapse .nav-link {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 0; /* Asegúrate de no añadir margen extra */
+}
+
+
+.container-fluid {
+    margin-left: 250px; 
+}
+
+h1 {
+    color: #333;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* styles.css */
+
+/* Estilo para la barra superior */
+.barra-superior {
+    background-color: #f8f9fa; /* Color de fondo claro */
+    border-bottom: 1px solid #dee2e6; /* Línea inferior */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+
+/* Estilo para el nombre del usuario */
+.barra-superior .usuario-nombre {
+    font-weight: bold; /* Nombre en negrita */
+}
+
+.barra-superior .bi-chevron-down {
+    color: blue; /* Color del ícono */
+}
+
+/* Estilo para la imagen del logo */
+.logo-bar {
+    width: 100px; /* Tamaño predeterminado */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+@media (max-width: 768px) {
+    .logo-bar {
+        width: 100px; /* Ajusta el tamaño en pantallas más pequeñas */
+    }
+}
+
+.logo-bar {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
