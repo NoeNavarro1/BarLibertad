@@ -18,7 +18,6 @@ def home(request):
         if producto.categoria not in menu_items:
             menu_items[producto.categoria] = []
         menu_items[producto.categoria].append(producto)
-
     context = {
         'menu_items': menu_items,
         'search': query  # Opcional: puedes pasar la consulta de búsqueda al contexto
