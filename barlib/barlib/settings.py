@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 #Aplicaciones propias
     'apps.principal',
     'apps.home',
+    'apps.login',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,5 @@ STATICFILES_DIRS = [BASE_DIR / 'static'] #Añadimos nuestra carpeta static
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'login/'
