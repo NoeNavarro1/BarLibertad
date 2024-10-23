@@ -87,7 +87,7 @@
             <div class="barra-superior d-flex justify-content-between align-items-center mb-4">
                 <div class="d-flex align-items-center ms-auto">
                     <img src="{% static 'user.png' %}" alt="User Image" class="rounded-circle" width="40" height="40">
-                    <span class="usuario-nombre ms-2">Lorelei Leon</span>
+                    <span class="usuario-nombre ms-2">Bienvenido, {{ user.username }}!</span>
                     <div class="dropdown ms-3">
                         <button class="btn bi-chevron-down" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
