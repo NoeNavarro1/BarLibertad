@@ -4,57 +4,38 @@ body {
     background-color: #f4f4f9; /* Un color de fondo claro */
 }
 
-/* static/menu/styles.css */
+/* Estilos para la barra lateral */
 .sidebar {
+    background-color: #f7f7fa;
     width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #f4f4f9;
-    color: #333;
-    border-right: 1px solid #dddddd;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
 }
-
-
 
 .sidebar .nav-link {
-    font-size: 1.1rem;
-    padding: 15px 10px;
+    font-size: 16px;
+    color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
 }
 
-.nav-link {
-    border-radius: 20px; /* Bordes redondeados */
+.sidebar .nav-link i {
+    margin-right: 10px;
+    color: #ff4a57;
 }
 
-.textMenu{
-    color: #fd6d19;
+.sidebar .nav-link:hover {
+    background-color: #e2e4e8;
+    color: #000;
 }
 
-.nav-link:hover {
-    background-color: #ececec; /* Cambia el degradado al pasar el ratón */
+.sidebar .nav-link.active {
+    background-color: #ff4a57;
+    color: white;
 }
 
-.nav-link.active {
-    background-color: #007bff; /* Color de fondo para el enlace activo */
-    color: white; /* Color del texto activo */
-}
-
-
-.sidebar .collapse .nav-link {
-    font-size: 1rem;
-    padding: 10px 20px;
-    margin: 0; /* Asegúrate de no añadir margen extra */
-}
-
-
-.container-fluid {
-    margin-left: 250px; 
-}
 
 h1 {
     color: #333;
@@ -63,26 +44,24 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* styles.css */
-
-/* Estilo para la barra superior */
+/* Estilos para la barra superior */
 .barra-superior {
-    background-color: #f8f9fa; /* Color de fondo claro */
-    border-bottom: 1px solid #dee2e6; /* Línea inferior */
-    padding: 10px 20px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    border-radius: 10px;
 }
 
-
-/* Estilo para el nombre del usuario */
-.barra-superior .usuario-nombre {
-    font-weight: bold; /* Nombre en negrita */
+.usuario-nombre {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
 }
 
-.barra-superior .bi-chevron-down {
-    color: blue; /* Color del ícono */
+img.rounded-circle {
+    border: 2px solid #ff4a57;
 }
+
 
 /* Estilo para la imagen del logo */
 .logo-bar {
@@ -102,6 +81,25 @@ h1 {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Estilos para el formulario y botones */
+.product-form .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+    background-color: #ff4a57;
+    border-color: #ff4a57;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 12px;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff6a75;
 }
 
 
