@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    {% load static %}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Iniciar Sesión</h1>
+
+      {% if messages %}
+        <div id="message-container">
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        </div>
+        <script>
+            setTimeout(function() {
+                var messageContainer = document.getElementById('message-container');
+                if (messageContainer) {
+                    messageContainer.style.display = 'none';
+                }
+            }, 4000);
+        </script>
+    {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="wave-group">
+            <input type="text" name="username" class="input" placeholder=" " required autocomplete="off" />
+            <span class="bar"></span>
+            <label class="label">Usuario</label>
+        </div>
+        <div class="wave-group">
+            <input type="password" name="password" class="input" placeholder=" " required autocomplete="off" />
+            <span class="bar"></span>
+            <label class="label">Contraseña</label>
+        </div>
+        <button type="submit">Ingresar</button>
+      </form>
+    </div>
+  </body>
+</html>
