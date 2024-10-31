@@ -21,9 +21,9 @@ body {
     transition: background 0.3s ease;
 }
 
-.sidebar .nav-link i {
-    margin-right: 10px;
-    color: #ff4a57;
+
+.icon-active {
+    color: #EB7809;
 }
 
 .sidebar .nav-link:hover {
@@ -32,9 +32,12 @@ body {
 }
 
 .sidebar .nav-link.active {
-    background-color: #ff4a57;
+    background-color: #EB7809;
     color: white;
 }
+
+
+
 
 
 h1 {
@@ -59,7 +62,7 @@ h1 {
 }
 
 img.rounded-circle {
-    border: 2px solid #ff4a57;
+    border: 2px solid #EB7809;
 }
 
 
@@ -90,8 +93,8 @@ img.rounded-circle {
 }
 
 .btn-primary {
-    background-color: #ff4a57;
-    border-color: #ff4a57;
+    background-color: #EB7809;
+    border-color: #EB7809;
     border-radius: 8px;
     font-size: 16px;
     padding: 12px;
@@ -99,8 +102,20 @@ img.rounded-circle {
 }
 
 .btn-primary:hover {
-    background-color: #ff6a75;
+    background-color: #EB7809;
 }
+
+.product-form .form-group {
+    margin-bottom: 20px;
+}
+
+#preview {
+    max-width: 100%; /* Asegúrate de que la imagen no se desborde */
+    height: auto; /* Mantiene la proporción */
+    border: 1px solid #ddd; /* Añade un borde alrededor de la imagen */
+    border-radius: 8px; /* Esquinas redondeadas */
+}
+
 
 
 

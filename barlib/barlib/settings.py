@@ -85,7 +85,7 @@ DATABASES = {
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://ngnavarroa:Navarro123@barlib.hfeoz.mongodb.net/'
-            }  
+            }
         }
 }
 
