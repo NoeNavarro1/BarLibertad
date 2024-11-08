@@ -136,9 +136,15 @@ STATICFILES_DIRS = [BASE_DIR / 'static'] #Añadimos nuestra carpeta static
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+Noe
 # Configura la URL de inicio de sesión
 LOGIN_URL = '/'  # Redirige al login si no está autenticado
 LOGIN_REDIRECT_URL = 'home/'  # URL de bienvenida después de autenticarse
+=======
+ main
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'login/'
+
