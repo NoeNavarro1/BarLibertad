@@ -16,7 +16,11 @@ def user_login(request):
         if user is not None:
             # Si la autenticación fue exitosa, iniciamos la sesión
             login(request, user)
+
+            return redirect('home/')  # Redirige a la vista de bienvenida
+=======
             return redirect('principal/')  # Redirige a la vista de bienvenida
+
         else:
             # Si falla, mostramos un mensaje de error
             messages.error(request, 'Usuario o contraseña inválidos.')
@@ -26,4 +30,8 @@ def user_login(request):
 @login_required  # Proteger la vista
 def principal(request):
     username = request.user.username
+
+    return render(request, 'home.html', {'username': username})
+=======
     return render(request, 'principal.html', {'username': username})
+
