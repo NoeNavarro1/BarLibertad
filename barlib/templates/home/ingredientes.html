@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="{% static 'menu/ingredientes.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">C</div>
+            <nav class="menu">
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-table"></i> Table
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-utensils"></i> Menu
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i> Order
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-history"></i> History
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-chart-bar"></i> Report
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-bell"></i> Alert
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="#" class="menu-item profile">
+                    <i class="fas fa-user-circle"></i> Profile
+                </a>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <main class="content">
+            <header class="header">
+                <input type="text" placeholder="Search category or menu" class="search">
+                <span class="stock-info">5 items out of stocks</span>
+            </header>
+            <section class="menu-section">
+                <h2>Choose Pizza</h2>
+                <div class="category-filters">
+                    <button class="filter-btn active">Pizza</button>
+                    <button class="filter-btn">Burger</button>
+                    <button class="filter-btn">Rice</button>
+                    <button class="filter-btn">Snacks</button>
+                    <button class="filter-btn">Drinks</button>
+                </div>
+                <div class="pizza-grid">
+                    <div class="pizza-item">
+                        <img src="{% static 'Pizza.jpeg' %}" alt="Pizza 1">
+                        <p>American Favorite</p>
+                        <span>$4.87</span>
+                    </div>
+                    <div class="pizza-item">
+                        <img src="{% static 'a.jpeg' %}" alt="Pizza 2">
+                        <p>Chicken Mushroom</p>
+                        <span>$5.87</span>
+                    </div>
+                    <!-- Más items de pizza -->
+                </div>
+            </section>
+        </main>
+        
+        <!-- Order Summary -->
+        <aside class="order-summary">
+            <div class="order-header">
+                <span>Current Orders</span>
+                <span>Table T1</span>
+            </div>
+            <div class="order-toggle">
+                <button class="toggle-btn active">Dine In</button>
+                <button class="toggle-btn">Take Away</button>
+            </div>
+            <div class="order-items">
+                <div class="order-item">
+                    <div class="order-info">
+                        <p>Orange Juice <span class="item-note">Ice: Less Ice</span></p>
+                        <div class="item-controls">
+                            <button class="btn-quantity">-</button>
+                            <span class="quantity">1</span>
+                            <button class="btn-quantity">+</button>
+                        </div>
+                    </div>
+                    <span class="item-price">$3.47</span>
+                </div>
+                <div class="order-item">
+                    <div class="order-info">
+                        <p>American Favorite <span class="item-note">Extra: Extra Mozzarella</span></p>
+                        <div class="item-controls">
+                            <button class="btn-quantity">-</button>
+                            <span class="quantity">2</span>
+                            <button class="btn-quantity">+</button>
+                        </div>
+                    </div>
+                    <span class="item-price">$4.87</span>
+                </div>
+                <div class="order-item">
+                    <div class="order-info">
+                        <p>Super Supreme <span class="item-note">Crust: Stuffed Crust</span></p>
+                        <div class="item-controls">
+                            <button class="btn-quantity">-</button>
+                            <span class="quantity">1</span>
+                            <button class="btn-quantity">+</button>
+                        </div>
+                    </div>
+                    <span class="item-price">$5.75</span>
+                </div>
+            </div>
+            <div class="order-summary-total">
+                <p>Items(4): $28.67</p>
+                <p>Tax (10%): $2.86</p>
+                <p>Total: <strong>$31.53</strong></p>
+            </div>
+            <div class="order-footer">
+                <button class="btn-print">Print Bills</button>
+            </div>
+        </aside>
+        
+    </div>
+</body>
+</html>

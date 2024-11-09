@@ -1,0 +1,175 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff; /* Fondo oscuro para tu estilo */
+    color: #fff;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenedor del formulario */
+.login-container {
+    background-color: #333; /* Fondo más oscuro para el contenedor */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(98, 86, 86, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Estilos generales para el contenedor de mensajes */
+#message-container {
+    margin: 20px auto; /* Espacio alrededor del contenedor */
+    max-width: 600px;  /* Ancho máximo del contenedor */
+}
+
+/* Estilos para la alerta de error */
+.alert {
+    padding: 15px;                  /* Espaciado interno */
+    border: 1px solid transparent;  /* Borde inicial */
+    border-radius: 5px;            /* Bordes redondeados */
+    position: relative;             /* Posición relativa para el contenido */
+    margin-bottom: 20px;            /* Espacio inferior */
+    color: #721c24;                 /* Color del texto */
+    background-color: #f8d7da;      /* Color de fondo */
+    border-color: #f5c6cb;          /* Color del borde */
+    animation: fadeIn 0.5s ease;    /* Animación de entrada */
+}
+
+/* Animación para desvanecer la alerta */
+@keyframes fadeIn {
+    from {
+        opacity: 0;  /* Comienza completamente transparente */
+    }
+    to {
+        opacity: 1;  /* Termina completamente visible */
+    }
+}
+
+/* Título */
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #b0bec5;
+}
+
+/* Estilo del grupo de input */
+.wave-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.wave-group .input {
+    font-size: 18px;
+    padding: 10px 5px;
+    display: block;
+    width: 95%;
+    border: none;
+    border-bottom: 1px solid #4b1abc;
+    background: transparent;
+    color: white;
+}
+
+.wave-group .input:focus {
+    outline: none;
+    border-bottom: 2px solid #82b1ff;
+}
+
+/* Label flotante con transiciones */
+.wave-group .label {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    color: #b0bec5;
+    font-size: 18px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+.wave-group .input:focus ~ .label,
+.wave-group .input:not(:placeholder-shown) ~ .label {
+    top: -20px;
+    font-size: 14px;
+    color: #4b1abc;
+}
+
+/* Barra animada */
+.wave-group .bar {
+    position: relative;
+    display: block;
+    width: 95%;
+}
+
+.wave-group .bar::before,
+.wave-group .bar::after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    position: absolute;
+    background: #82b1ff;
+    transition: width 0.3s ease;
+}
+
+.wave-group .bar::before {
+    left: 50%;
+}
+
+.wave-group .bar::after {
+    right: 50%;
+}
+
+.wave-group .input:focus ~ .bar::before,
+.wave-group .input:focus ~ .bar::after {
+    width: 50%;
+}
+
+/* Botón de enviar */
+.login-container button {
+  width: 100%;
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+
+button:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+button:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+
+.login-container button:hover {
+    background-color: #45a049;
+}
+
+/* Mensajes de error */
+.login-container .error {
+    color: #ff5252;
+    text-align: center;
+    margin-bottom: 16px;
+}

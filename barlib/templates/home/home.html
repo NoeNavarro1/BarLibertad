@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <title>Productos</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,68 +13,82 @@
     <!-- Bootstrap Icons CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Tu archivo de estilos personalizado -->
     <link rel="stylesheet" href="{% static 'menu/styles.css' %}">
 </head>
 <body>
+
     <div class="d-flex">
         <!-- Barra lateral -->
         <nav class="sidebar vh-100 p-3 overflow-auto">
             <img src="{% static 'logo.png' %}" alt="Logo Bar La Libertad" class="logo-bar mb-4" >
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#" data-bs-toggle="collapse" data-bs-target="#dashboardSubmenu">
-                        <i class="bi bi-house-door"></i>
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#dashboardSubmenu">
+                        <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
                     <!-- Submenú para Dashboard -->
                     <ul class="collapse list-unstyled" id="dashboardSubmenu">
-                        <li><a class="nav-link text-dark ms-3" href="#">Graficas</a></li>
-                        <li><a class="nav-link text-dark ms-3" href="#">Historial</a></li>
+                        <li><a class="nav-link ms-3" href="#">Graficas</a></li>
+                        <li><a class="nav-link ms-3" href="#">Historial</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
-                        <i class="bi bi-stickies"></i>
+                    <a class="nav-link"  href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
+                        <i class="fas fa-shopping-cart"></i>
                         <span> Ordenes</span>
                     </a>
                     <!-- Submenú para Orders -->
                     <ul class="collapse list-unstyled" id="ordersSubmenu">
-                        <li><a class="nav-link text-dark ms-3" href="#">Pendientes</a></li>
-                        <li><a class="nav-link text-dark ms-3" href="#">Completas</a></li>
-                        <li><a class="nav-link text-dark ms-3" href="#">Canceladas</a></li>
+                        <li><a class="nav-link ms-3 {% if request.path == '/' %}active{% endif %}" href="{% url 'ordenes:ordenes' %}">Pendientes</a></li>
+                        <li><a class="nav-link ms-3" href="#">Completas</a></li>
+                        <li><a class="nav-link ms-3" href="#">Canceladas</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-warning fw-bold" href="#" data-bs-toggle="collapse" data-bs-target="#menuSubmenu" aria-expanded="true">
-                        <i class="bi bi-grid-1x2-fill icon-active"></i> <!-- Clase personalizada para el icono en color naranja -->
+                    <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#menuSubmenu" aria-expanded="true">
+                        <i class="fas fa-utensils"></i>
                         <span class="ms-2">Menu</span>
                     </a>
                     <ul class="collapse show list-unstyled" id="menuSubmenu">
                         <li><a class="nav-link ms-3 {% if request.path == '/registro/' %}active{% endif %}" href="{% url 'home:registro_producto' %}">Registro</a></li>
                         <li><a class="nav-link ms-3 text-warning {% if request.path == '/' %}active{% endif %}" href="{% url 'home:home' %}">Productos</a></li>
                         <li><a class="nav-link ms-3" href="#">Promos</a></li>
-                        <li><a class="nav-link ms-3" href="#">Ingredientes</a></li>
+                        <li><a class="nav-link ms-3" href="#">Menu</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#mesaSubmenu">
+                        <i class="bi bi-grid-1x2-fill"></i>
+                        <span> Mesas</span>
+                    </a>
+                    <!-- Submenú para Mesas -->
+                    <ul class="collapse list-unstyled" id="mesaSubmenu">
+                        <li><a class="nav-link ms-3" href="#">Piso 1</a></li>
+                        <li><a class="nav-link ms-3" href="#">Piso 2</a></li>
+                        <li><a class="nav-link ms-3" href="#">Piso 3</a></li>
                     </ul>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#" data-bs-toggle="collapse" data-bs-target="#perfilSubmenu">
-                        <i class="bi bi-person"></i>
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#perfilSubmenu">
+                        <i class="fas fa-user-circle"></i>
                         <span> Perfil</span>
                     </a>
                     <!-- Submenú para Perfil -->
                     <ul class="collapse list-unstyled" id="perfilSubmenu">
-                        <li><a class="nav-link text-dark ms-3" href="#">Notificacion</a></li>
-                        <li><a class="nav-link text-dark ms-3" href="#">Informacion</a></li>
-                        <li><a class="nav-link text-dark ms-3" href="#">Foto</a></li>
+                        <li><a class="nav-link ms-3" href="#">Notificacion</a></li>
+                        <li><a class="nav-link ms-3" href="#">Informacion</a></li>
+                        <li><a class="nav-link ms-3" href="#">Foto</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#"><i class="bi bi-gear"></i> <span>Configuracion</span></a>
+                    <a class="nav-link" href="#"><i class="fas fa-cog"></i> <span>Configuracion</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#"><i class="bi bi-box-arrow-right"></i> Salir</a>
+                    <a class="nav-link" href="#"><i class="fas fa-sign-out"></i> Salir</a>
                 </li>
             </ul>
         </nav>
@@ -82,74 +96,107 @@
         <!-- Contenido principal -->
         <div class="container-fluid p-4">
             <!-- Barra superior -->
-            <div class="barra-superior d-flex justify-content-between align-items-center mb-4">
-                <div class="d-flex align-items-center ms-auto">
-                    <img src="{% static 'user.png' %}" alt="User Image" class="rounded-circle" width="40" height="40">
+            <div class="barra-superior d-flex justify-content-between align-items-center p-3 mb-4">
+                <!-- Barra de búsqueda -->
+                <form action="{% url 'home:home' %}" method="get">
+                    <input type="text" name="search" class="search" placeholder="Buscar productos" aria-label="Search" value="{{ search }}">
+                </form>
+            
+                <!-- Iconos y menú de usuario -->
+                <div class="d-flex align-items-center">
+                    <button class="btn notification-btn position-relative me-3">
+                        <i class="bi bi-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">1</span>
+                    </button>
+                    <img src="{% static 'user.png' %}" alt="User Image" class="rounded-circle" width="35" height="35">
                     <span class="usuario-nombre ms-2">Lorelei Leon</span>
-                    <div class="dropdown ms-3">
-                        <button class="btn bi-chevron-down" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Opción 1</a></li>
-                            <li><a class="dropdown-item" href="#">Opción 2</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    <div class="dropdown ms-2">
+                        <button class="btn bi-chevron-down" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">Option 1</a></li>
+                            <li><a class="dropdown-item" href="#">Option 2</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            
+            <header class="d-flex justify-content-between align-items-end mb-4">
+                <span class="stock-info  ms-auto" onclick="mostrarProductosAgotados()">
+                    <i class="fas fa-exclamation-circle text-warning"></i>
+                    {{ cantidad_agotados }} Productos agotados</span>
+            </header>
+            
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarModal()">&times;</span>
+                    <h2>Productos Agotados</h2>
+                    <ul id="productosAgotadosContainer" class="list-unstyled" style="text-align: left;"></ul>
+                    <button class="filter-btn active" onclick="cerrarModal()">Cerrar</button>
+                </div>
+            </div>
 
-
-            <h1 class="my-4">Menu</h1>
-            <div class="mb-3 d-flex justify-content-between">
-                <form action="{% url 'home:home' %}" method="get" class="input-group w-25">
-                    <span class="input-group-text" id="search-icon">
-                        <i class="bi bi-search"></i>
-                    </span>
-                    <input type="text" name="search" class="form-control" placeholder="Buscar Productos" aria-label="Buscar Productos" aria-describedby="search-icon" value="{{ search }}">
-                </form>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="category-filters d-flex w-60">
+                    <button class="filter-btn active" data-category="todos">Todos</button>
+                    <button class="filter-btn" data-category="drink">Drink</button>
+                    <button class="filter-btn" data-category="snack">Snack</button>
+                    <button class="filter-btn" data-category="alitas">Alitas</button>
+                    <button class="filter-btn" data-category="cervezas">Cervezas</button>
+                    <button class="filter-btn" data-category="botellas">Botellas</button>
+                </div>
                 <a href="{% url 'home:registro_producto' %}">
-                    <button class="btn btn-primary"> Nuevo Producto &nbsp; <i class="bi bi-plus"></i></button>
+                    <button class="btn-print ms-auto">Agregar <i class="bi bi-plus-circle"></i></button>
                 </a>
             </div>
-            
-            
-
-            {% for category, items in menu_items.items %}
-                <h3>{{ category }}</h3>
-                <ul class="list-group" id="product-list">
-                    {% for item in items %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center" draggable="true" ondragstart="drag(event)" id="item-{{ item.id }}">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-sm me-2" title="Reordenar">
-                                <i class="bi bi-grip-vertical"></i>
-                            </button>
-                            {% if item.imagen %}
-                                <img  src="{% static item.imagen %}" style="width: 50px; height: 50px; margin-left: 10px;" />
-                            {% endif %}
-                            <span>{{ item.nombre }}</span>
-                            &nbsp;
-                            <span>${{ item.precio }}</span>
+            <section class="menu-section">
+                
+                <div id="product-list">
+                    {% for category, items in menu_items.items %}
+                        <div class="category" data-category="{{ category|lower }}">
+                            <h3>{{ category }}</h3>
+                            <ul class="list-group">
+                                {% for item in items %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center" draggable="true" ondragstart="drag(event)" id="item-{{ item.id }}">
+                                    <div class="item-container" style="display: flex; align-items: center; margin-bottom: 15px;">
+                                        <button class="btn btn-sm me-2" title="Reordenar">
+                                            <i class="bi bi-grip-vertical"></i>
+                                        </button>
+                                        
+                                        {% if item.imagen %}
+                                            <img src="{{ item.imagen.url }}" style="width: 70px; height: 70px; border-radius: 10%; margin-bottom: 5px;" />
+                                        {% endif %}
+                                        
+                                        <div style="margin-left: 10px;">
+                                            <span style="font-weight: bold;">{{ item.nombre }}</span><br>
+                                            <span style="color: #555;">${{ item.precio }}</span>
+                                            <span style="color: #777;">{{ item.cantidad }} {{ item.unidad }}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <a href="{% url 'home:editar_producto' item.pk %}" class="btn btn-sm btn-outline-primary" title="Editar producto">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <button class="btn btn-sm btn-outline-danger" title="Eliminar producto" onclick="confirmarEliminar('{{ item.pk }}')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary mark-out-of-stock" title="Marcar como agotado" onclick="toggleOutOfStock('{{ item.pk }}', this)">
+                                            <i class="bi bi-x-circle"></i>
+                                        </button>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </div>
-                        <div>
-                            <a href="{% url 'home:editar_producto' item.pk %}" class="btn btn-sm btn-outline-primary" title="Editar producto">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <button class="btn btn-sm btn-outline-danger" title="Eliminar producto" onclick="confirmarEliminar('{{ item.pk }}')">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </div>
-                        
-                    </li>
-                    
                     {% endfor %}
-                </ul>
-            {% endfor %}
-
-
-
+                </div>
+            </section>
+            
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function confirmarEliminar(productoId) {
@@ -158,7 +205,81 @@
                 window.location.href = `/home/eliminar/${productoId}/`;  // Redirige a la vista de eliminación
             }
         }
-    </script>
 
+        function toggleOutOfStock(productoId, button, agotado) {
+            const action = agotado ? "habilitar" : "marcar como agotado";
+            const confirmation = confirm(`¿Estás seguro de que deseas ${action} este producto?`);
+            
+            if (confirmation) {
+                // Lógica para hacer la solicitud AJAX o redirigir a una vista
+                window.location.href = `/home/toggle_stock/${productoId}/`; // Cambia esta URL según tu ruta
+            }
+        }
+        
+
+        function mostrarProductosAgotados() {
+            fetch("{% url 'home:productos_agotados' %}", {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById("productosAgotadosContainer");
+                container.innerHTML = data.productos_agotados.map(producto => `
+                    <div class="producto-agotado d-flex align-items-center mb-2">
+                        <img src="${producto.imagen_url}" class="producto-imagen me-2">
+                        <p class="mb-0">${producto.nombre} - $${producto.precio}</p>
+                        <button onclick="toggleOutOfStock('${producto._id}', this, ${producto.agotado})" class="btn btn-link ms-auto text-success" title="Habilitar producto">
+                            <i class="fas fa-check-circle"></i>
+                        </button>
+                    </div>
+                `).join('');
+                
+                // Mostrar el modal
+                document.getElementById("modal").style.display = "block";
+            });
+        }
+
+        function cerrarModal() {
+            // Ocultar el modal
+            document.getElementById("modal").style.display = "none";
+        }
+        
+        // Cerrar el modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            const modal = document.getElementById("modal");
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const categories = document.querySelectorAll('.category');
+    
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Remover la clase 'active' de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Añadir clase 'active' al botón clicado
+                    button.classList.add('active');
+    
+                    // Obtener la categoría seleccionada
+                    const selectedCategory = button.getAttribute('data-category');
+    
+                    // Mostrar/ocultar categorías según la selección
+                    categories.forEach(category => {
+                        if (selectedCategory === 'todos' || category.getAttribute('data-category') === selectedCategory) {
+                            category.style.display = 'block'; // Mostrar
+                        } else {
+                            category.style.display = 'none'; // Ocultar
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+        
 </body>
 </html>

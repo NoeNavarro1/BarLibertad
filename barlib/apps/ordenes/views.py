@@ -4,7 +4,7 @@ from django.http import HttpResponseForbidden
 
 
 @login_required
-def principal(request):
+def ordenes(request):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Acceso denegado.")
-    return render(request, 'principal/principal.html')
+    return render(request, 'ordenes/ordenes.html')

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 #Aplicaciones propias
     'apps.principal',
     'apps.home',
+    'apps.login',
+    'apps.ordenes',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +86,7 @@ DATABASES = {
             'NAME': 'BarLib',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://ngnavarroa:Navarro123@barlib.hfeoz.mongodb.net/'
+                'host': 'mongodb+srv://ngnavarroa:JWoWthe9X4h9mYeq@barlib.hfeoz.mongodb.net/'
             }
         }
 }
@@ -132,5 +134,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static'] #Añadimos nuestra carpeta static
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'login/'
+
