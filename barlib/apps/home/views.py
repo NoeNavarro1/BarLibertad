@@ -1,4 +1,9 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 from .models import Producto
 from bson import ObjectId
 from django.conf import settings
@@ -30,7 +35,8 @@ def editar_producto_view(request, producto_id):
     }
     return render(request, 'home/editar.html', context)
 
-# Vista home
+# Vista home protegida
+@login_required
 def home(request):
     query = request.GET.get('search', '')
     if query:
@@ -47,15 +53,23 @@ def home(request):
         if producto.categoria not in menu_items:
             menu_items[producto.categoria] = []
         menu_items[producto.categoria].append(producto)
+
     
     context = {
         'menu_items': menu_items,
         'search': query,
         'cantidad_agotados': productos_agotados,
         'MEDIA_URL': settings.MEDIA_URL
+
     }
 
     return render(request, 'home/home.html', context)
+
+
+# Vista para cerrar sesión
+def logout_view(request):
+    logout(request)  # Cerrar sesión
+    return redirect('/')  # Redirigir al login
 
 
 def registro_producto_view(request):
@@ -80,6 +94,7 @@ def registro_producto_view(request):
         nuevo_producto.save()
 
         return redirect('/home/')
+
     return render(request, 'home/registro.html')
 
 def ingredientes_view(request):
