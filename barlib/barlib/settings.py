@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.principal',
     'apps.home',
     'apps.login',
+    'apps.ordenes',
 ]
 
 MIDDLEWARE = [
@@ -88,8 +89,8 @@ DATABASES = {
             'NAME': 'BarLib',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://ngnavarroa:Navarro123@barlib.hfeoz.mongodb.net/'
-            }  
+                'host': 'mongodb+srv://ngnavarroa:JWoWthe9X4h9mYeq@barlib.hfeoz.mongodb.net/'
+            }
         }
 }
 

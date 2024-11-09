@@ -17,9 +17,8 @@ def user_login(request):
             # Si la autenticación fue exitosa, iniciamos la sesión
             login(request, user)
 
-            return redirect('home/')  # Redirige a la vista de bienvenida
-=======
-            return redirect('principal/')  # Redirige a la vista de bienvenida
+         return redirect('home/')  # Redirige a la vista de bienvenida
+         return redirect('principal/')  # Redirige a la vista de bienvenida
 
         else:
             # Si falla, mostramos un mensaje de error
@@ -32,6 +31,6 @@ def principal(request):
     username = request.user.username
 
     return render(request, 'home.html', {'username': username})
-=======
+
     return render(request, 'principal.html', {'username': username})
 
