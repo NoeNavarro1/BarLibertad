@@ -68,8 +68,15 @@ def home(request):
 
 # Vista para cerrar sesión
 def logout_view(request):
-    logout(request)  # Cerrar sesión
-    return redirect('/')  # Redirigir al login
+    logout(request)  # Cierra la sesión
+
+    # Redirige al login y añade encabezados para evitar caché
+    request.session.flush() 
+    response = redirect('/')
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
 
 
 def registro_producto_view(request):
@@ -95,6 +102,9 @@ def registro_producto_view(request):
 
         return redirect('/home/')
 
+
+    return render(request, 'home/registro.html')
+=======
     return render(request, 'home/registro.html')
 
 def ingredientes_view(request):
@@ -134,5 +144,4 @@ def productos_agotados_view(request):
         'MEDIA_URL': settings.MEDIA_URL,
     }
     return render(request, 'home/home.html', context)
-
 
