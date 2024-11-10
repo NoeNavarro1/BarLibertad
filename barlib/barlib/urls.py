@@ -22,7 +22,11 @@ urlpatterns = [
     path('', include('apps.login.urls')),
     path('admin/', admin.site.urls),
     path('principal/', include('apps.principal.urls')),
+ Noe
     path('home/', include('apps.home.urls')),
     path('logout/', logout_view, name='logout'),
 
 ]
+=======
+    ]
+main
