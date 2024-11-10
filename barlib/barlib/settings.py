@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.principal',
     'apps.home',
     'apps.login',
+    'apps.ordenes',
 ]
 
 MIDDLEWARE = [
@@ -89,9 +90,10 @@ DATABASES = {
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://ngnavarroa:JWoWthe9X4h9mYeq@barlib.hfeoz.mongodb.net/'
-            }  
+            }
         }
 }
+
 
 
 # Password validation
