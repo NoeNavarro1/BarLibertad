@@ -18,7 +18,6 @@ def user_login(request):
             login(request, user)
 
             return redirect('home/')  # Redirige a la vista de bienvenida
-=======
             return redirect('principal/')  # Redirige a la vista de bienvenida
 
         else:
@@ -32,6 +31,5 @@ def principal(request):
     username = request.user.username
 
     return render(request, 'home.html', {'username': username})
-=======
     return render(request, 'principal.html', {'username': username})
 
