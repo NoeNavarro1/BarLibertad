@@ -24,5 +24,5 @@ urlpatterns = [
     path('principal/', include('apps.principal.urls')),
     path('home/', include('apps.home.urls')),
     path('logout/', logout_view, name='logout'),
-    
+
 ]

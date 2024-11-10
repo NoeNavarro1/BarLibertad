@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    #'django.middleware.auth_middleware.LoginRequiredMiddleware',
     
     'apps.login.middleware.auth_middleware.LoginRequiredMiddleware',
 ]
@@ -88,7 +88,7 @@ DATABASES = {
             'NAME': 'BarLib',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://ngnavarroa:Navarro123@barlib.hfeoz.mongodb.net/'
+                'host': 'mongodb+srv://ngnavarroa:JWoWthe9X4h9mYeq@barlib.hfeoz.mongodb.net/'
             }  
         }
 }
