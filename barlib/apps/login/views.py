@@ -18,12 +18,20 @@ def user_login(request):
             login(request, user)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> c68ff303cb6da680c24b2a64eca0ab6e18eb0677
             return redirect('home/')  # Redirige a la vista de bienvenida
             return redirect('principal/')  # Redirige a la vista de bienvenida
 =======
          return redirect('home/')  # Redirige a la vista de bienvenida
          return redirect('principal/')  # Redirige a la vista de bienvenida
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+
+>>>>>>> c68ff303cb6da680c24b2a64eca0ab6e18eb0677
 
         else:
             # Si falla, mostramos un mensaje de error
@@ -37,8 +45,15 @@ def principal(request):
 
     return render(request, 'home.html', {'username': username})
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> develop
+=======
+
+=======
+
+
+>>>>>>> c68ff303cb6da680c24b2a64eca0ab6e18eb0677
     return render(request, 'principal.html', {'username': username})
 

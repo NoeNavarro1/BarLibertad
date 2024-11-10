@@ -103,6 +103,10 @@ def registro_producto_view(request):
         return redirect('/home/')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> c68ff303cb6da680c24b2a64eca0ab6e18eb0677
     return render(request, 'home/registro.html')
 =======
     return render(request, 'home/registro.html')
@@ -145,5 +149,8 @@ def productos_agotados_view(request):
     }
     return render(request, 'home/home.html', context)
 
+<<<<<<< HEAD
 
 >>>>>>> develop
+=======
+>>>>>>> c68ff303cb6da680c24b2a64eca0ab6e18eb0677

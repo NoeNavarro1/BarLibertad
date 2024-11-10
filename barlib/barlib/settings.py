@@ -90,7 +90,15 @@ DATABASES = {
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://ngnavarroa:JWoWthe9X4h9mYeq@barlib.hfeoz.mongodb.net/'
+<<<<<<< HEAD
             }
+=======
+
+            }  
+=======
+            }
+
+>>>>>>> c68ff303cb6da680c24b2a64eca0ab6e18eb0677
         }
 }
 
