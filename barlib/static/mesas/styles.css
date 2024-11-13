@@ -1,0 +1,363 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+}
+
+h1, h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+.main-content {
+    display: flex;
+    gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #ffffff;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-fluid {
+    margin-left: 250px; /* Avoid content hiding behind sidebar */
+}
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #424242;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar .nav-link:hover {
+    color: orange;
+}
+
+.sidebar .nav-link.active {
+    background-color: rgba(255, 152, 0, 0.2);
+    color: darkorange;
+}
+
+/* Search Bar */
+.search {
+    width: 250px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+}
+
+/* Category Filters */
+.category-filters {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff; /* Ajusta el color según tus preferencias */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.filter-btn i {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.filter-btn.active {
+    background-color: #ff9800;
+    color: #fff;
+}
+
+/* Top Bar */
+.barra-superior {
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+
+.usuario-nombre {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Logo */
+.logo-bar {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Table Section */
+.tables-section {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tables-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.free {
+    border: 3px solid #3CCF4E;
+}
+
+.reserved {
+    border: 3px solid #FF9F1C;
+}
+
+.checked-in {
+    border: 3px solid #FF6B6B;
+}
+
+.chairs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.chair {
+    width: 15px;
+    height: 15px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+/* Reservation List */
+.reservation-list {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-list input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.status-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn.active {
+    background-color: #FF9F1C;
+    color: #fff;
+}
+
+.reservations {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.reservations li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.cancel {
+    flex: 1;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check-in {
+    flex: 1;
+    padding: 10px;
+    background-color: #FF9F1C;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Toggle Button */
+.toggle {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.toggle.active {
+    background-color: #FF9F1C;
+    color: #fff;
+}
+
+/* Date and Time Inputs */
+.date-time input {
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+.date-time input[type="date"], .date-time input[type="time"] {
+    font-family: 'Arial', sans-serif;
+}
+
+.date-time input:focus {
+    border-color: #FF9F1C;
+    outline: none;
+    background-color: #fff;
+}
+
+.date-time {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el calendario, reloj y botón */
+}
+
+/* Table Legend */
+.table-legend {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.legend {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.legend.free {
+    background-color: #3CCF4E;
+}
+
+.legend.reserved {
+    background-color: #FF9F1C;
+}
+
+.legend.checked-in {
+    background-color: #FF6B6B;
+}
+
+/* Mesa Container */
+.mesa-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.table {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.chairs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chair {
+    width: 20px;
+    height: 20px;
+    background-color: #888;
+    border-radius: 50%;
+}
+
+/* Chair Status Colors */
+.free {
+    background-color: #dff0d8; /* Free chair color */
+}
+
+.reserved {
+    background-color: #FF9F1C; /* Reserved chair color */
+}
+
+.checked-in {
+    background-color: #FF6B6B; /* Checked-in chair color */
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f4f4f9; /* Ajusta según el estilo de tu proyecto */
+}

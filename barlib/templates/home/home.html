@@ -55,7 +55,7 @@
                     <ul class="collapse show list-unstyled" id="menuSubmenu">
                         <li><a class="nav-link ms-3 {% if request.path == '/registro/' %}active{% endif %}" href="{% url 'home:registro_producto' %}">Registro</a></li>
                         <li><a class="nav-link ms-3 text-warning {% if request.path == '/' %}active{% endif %}" href="{% url 'home:home' %}">Productos</a></li>
-                        <li><a class="nav-link ms-3" href="#">Promos</a></li>
+                        <li><a class="nav-link ms-3 {% if request.path == '/' %}active{% endif %}" href="{% url 'home:promos' %}">Promos</a></li>
                         <li><a class="nav-link ms-3" href="#">Menu</a></li>
                     </ul>
                 </li>
@@ -66,7 +66,7 @@
                     </a>
                     <!-- Submenú para Mesas -->
                     <ul class="collapse list-unstyled" id="mesaSubmenu">
-                        <li><a class="nav-link ms-3" href="#">Piso 1</a></li>
+                        <li><a class="nav-link ms-3 {% if request.path == '/' %}active{% endif %}" href="{% url 'mesas:mesas' %}">Piso 1</a></li>
                         <li><a class="nav-link ms-3" href="#">Piso 2</a></li>
                         <li><a class="nav-link ms-3" href="#">Piso 3</a></li>
                     </ul>
@@ -139,19 +139,30 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="category-filters d-flex w-60">
-                    <button class="filter-btn active" data-category="todos">Todos</button>
-                    <button class="filter-btn" data-category="drink">Drink</button>
-                    <button class="filter-btn" data-category="snack">Snack</button>
-                    <button class="filter-btn" data-category="alitas">Alitas</button>
-                    <button class="filter-btn" data-category="cervezas">Cervezas</button>
-                    <button class="filter-btn" data-category="botellas">Botellas</button>
+                    <button class="filter-btn active" data-category="todos">
+                        <i class="fas fa-th"></i> Todos
+                    </button>
+                    <button class="filter-btn" data-category="drink">
+                    <i class="fas fa-glass-martini"></i> Drink
+                    </button>
+                    <button class="filter-btn" data-category="snack">
+                    <i class="fas fa-cookie-bite"></i> Snack
+                    </button>
+                    <button class="filter-btn" data-category="alitas">
+                        <i class="fas fa-drumstick-bite"></i> Alitas
+                    </button>
+                    <button class="filter-btn" data-category="cervezas">
+                    <i class="fas fa-beer"></i> Cervezas
+                    </button>
+                    <button class="filter-btn" data-category="botellas">
+                        <i class="fas fa-wine-bottle"></i> Botellas
+                    </button>
                 </div>
                 <a href="{% url 'home:registro_producto' %}">
                     <button class="btn-print ms-auto">Agregar <i class="bi bi-plus-circle"></i></button>
                 </a>
             </div>
             <section class="menu-section">
-                
                 <div id="product-list">
                     {% for category, items in menu_items.items %}
                         <div class="category" data-category="{{ category|lower }}">

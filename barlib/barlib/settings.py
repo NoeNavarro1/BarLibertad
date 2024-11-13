@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.home',
     'apps.login',
     'apps.ordenes',
+    'apps.Mesas',
 ]
 
 MIDDLEWARE = [

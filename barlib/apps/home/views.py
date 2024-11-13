@@ -1,8 +1,11 @@
+import json
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto
+from .models import Producto, Promocion
 from bson import ObjectId
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 # Vista para editar un producto
 def editar_producto_view(request, producto_id):
@@ -19,8 +22,7 @@ def editar_producto_view(request, producto_id):
         if imagen:
             producto.imagen = imagen
 
-        # Manejar el estado de agotado
-        producto.agotado = 'agotado' in request.POST  # Esto asume que el checkbox tiene el nombre 'agotado'
+        producto.agotado = 'agotado' in request.POST
         
         producto.save()
         return redirect('/home/')
@@ -66,9 +68,8 @@ def registro_producto_view(request):
         cantidad = request.POST['cantidad']
         unidad = request.POST['unidad']
         imagen = request.FILES.get('imagen')
-        agotado = 'agotado' in request.POST  # Esto asume que el checkbox tiene el nombre 'agotado'
+        agotado = 'agotado' in request.POST
 
-        # Crear y guardar el producto en MongoDB
         nuevo_producto = Producto(
             nombre=nombre,
             precio=precio,
@@ -76,7 +77,7 @@ def registro_producto_view(request):
             cantidad=cantidad,
             unidad=unidad,
             imagen=imagen,
-            agotado=agotado)  # Guardar el estado de agotado
+            agotado=agotado)
         nuevo_producto.save()
 
         return redirect('/home/')
@@ -85,14 +86,61 @@ def registro_producto_view(request):
 def ingredientes_view(request):
     return render(request, 'home/ingredientes.html')
 
+def promos_view(request):
+    # Obtener todos los productos
+    productos = Producto.objects.all()
+    # Obtener todas las promociones
+    promociones = Promocion.objects.all()
+    
+    context = {
+        'productos': productos,
+        'promociones': promociones,
+    }
+    return render(request, 'home/promos.html', context)
+
+def crear_promos_view(request):
+    if request.method == 'POST':
+        # Obtener los datos del formulario
+        promo_type = request.POST.get('promoType')
+        nombre_promocion = request.POST.get('amountOff')
+        descuento = request.POST.get('porcentaje')  # Suponiendo que el descuento sea un porcentaje
+        producto_id = request.POST.get('producto')
+        producto = Producto.objects.get(pk=ObjectId(producto_id))
+
+        # Crear la nueva promoción
+        promocion = Promocion(
+            nombre=nombre_promocion,
+            tipo=promo_type,
+            descuento=descuento,
+            producto=producto
+        )
+
+        promocion.save()
+
+        return redirect('home:promos')# Redirigir a la página de promociones
+    
+    productos = Producto.objects.all()
+    return render(request, 'home/crearPromo.html', {'productos': productos})
+
+
+@csrf_exempt
+def toggle_promocion(request, promo_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        promo = Promocion.objects.get(id=promo_id)
+        promo.activo = data.get('activo', False)
+        promo.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)
+
 def eliminar_producto_view(request, producto_id):
     producto = get_object_or_404(Producto, _id=ObjectId(producto_id))
-    producto.delete()  # Elimina el producto de la base de datos
+    producto.delete()
     return redirect('/home/')
 
 def toggle_stock(request, producto_id):
     producto = get_object_or_404(Producto,  _id=ObjectId(producto_id))
-    producto.agotado = not producto.agotado  # Alterna el estado de agotado
+    producto.agotado = not producto.agotado
     producto.save()
     return redirect('home:home')
 

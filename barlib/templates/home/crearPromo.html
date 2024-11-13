@@ -1,0 +1,475 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'menu/styles.css' %}">
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Barra lateral -->
+        <nav class="sidebar vh-100 p-3 overflow-auto">
+            <img src="{% static 'logo.png' %}" alt="Logo Bar La Libertad" class="logo-bar mb-4" >
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#dashboardSubmenu">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <!-- Submenú para Dashboard -->
+                    <ul class="collapse list-unstyled" id="dashboardSubmenu">
+                        <li><a class="nav-link ms-3" href="#">Graficas</a></li>
+                        <li><a class="nav-link ms-3" href="#">Historial</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span> Ordenes</span>
+                    </a>
+                    <!-- Submenú para Orders -->
+                    <ul class="collapse list-unstyled" id="ordersSubmenu">
+                        <li><a class="nav-link ms-3 {% if request.path == '/' %}active{% endif %}" href="{% url 'ordenes:ordenes' %}">Pendientes</a></li>
+                        <li><a class="nav-link ms-3" href="#">Completas</a></li>
+                        <li><a class="nav-link ms-3" href="#">Canceladas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#menuSubmenu" aria-expanded="true">
+                        <i class="fas fa-utensils"></i>
+                        <span class="ms-2">Menu</span>
+                    </a>
+                    <ul class="collapse show list-unstyled" id="menuSubmenu">
+                        <li><a class="nav-link ms-3 {% if request.path == '/registro/' %}active{% endif %}" href="{% url 'home:registro_producto' %}">Registro</a></li>
+                        <li><a class="nav-link ms-3 {% if request.path == '/' %}active{% endif %}" href="{% url 'home:home' %}">Productos</a></li>
+                        <li><a class="nav-link ms-3 text-warning {% if request.path == '/' %}active{% endif %}" href="{% url 'home:promos' %}">Promos</a></li>
+                        <li><a class="nav-link ms-3" href="#">Menu</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#mesaSubmenu">
+                        <i class="bi bi-grid-1x2-fill"></i>
+                        <span> Mesas</span>
+                    </a>
+                    <!-- Submenú para Mesas -->
+                    <ul class="collapse list-unstyled" id="mesaSubmenu">
+                        <li><a class="nav-link ms-3 {% if request.path == '/' %}active{% endif %}" href="{% url 'mesas:mesas' %}">Piso 1</a></li>
+                        <li><a class="nav-link ms-3" href="#">Piso 2</a></li>
+                        <li><a class="nav-link ms-3" href="#">Piso 3</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#perfilSubmenu">
+                        <i class="fas fa-user-circle"></i>
+                        <span> Perfil</span>
+                    </a>
+                    <!-- Submenú para Perfil -->
+                    <ul class="collapse list-unstyled" id="perfilSubmenu">
+                        <li><a class="nav-link ms-3" href="#">Notificacion</a></li>
+                        <li><a class="nav-link ms-3" href="#">Informacion</a></li>
+                        <li><a class="nav-link ms-3" href="#">Foto</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-cog"></i> <span>Configuracion</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-sign-out"></i> Salir</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <div class="container-fluid p-4">
+            <!-- Barra superior -->
+            <div class="barra-superior d-flex justify-content-between align-items-center p-3 mb-4">
+                <span class="usuario-nombre ms-2">Creacion de Promocion</span>
+            
+                <!-- Iconos y menú de usuario -->
+                <div class="d-flex align-items-center">
+                    <button class="btn notification-btn position-relative me-3">
+                        <i class="bi bi-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">1</span>
+                    </button>
+                    <img src="{% static 'user.png' %}" alt="User Image" class="rounded-circle" width="35" height="35">
+                    <span class="usuario-nombre ms-2">Lorelei Leon</span>
+                    <div class="dropdown ms-2">
+                        <button class="btn bi-chevron-down" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">Option 1</a></li>
+                            <li><a class="dropdown-item" href="#">Option 2</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-section">
+                <form class="product-form" action="{% url 'home:crearPromos' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="icon-select">
+                        <label for="promoType">Tipo de Promoción:</label>
+                        <i id="promoIcon" class="fas fa-tag"></i>
+                        <select id="promoType" name="promoType" class="form-control" onchange="showPromoOptions()">
+                            <option value="" disabled selected>Selecciona un tipo</option>
+                            <option value="descuento" data-icon="fas fa-tags">Descuento directo</option>
+                            <option value="cierto_tiempo" data-icon="fas fa-clock">Promoción válida por cierto tiempo</option>
+                            <option value="dias_especificos" data-icon="fas fa-calendar-day">Promoción válida por días específicos</option>
+                            <option value="fecha_festiva" data-icon="fas fa-gift">Promoción en fecha festiva</option>
+                            <option value="productos_combinados" data-icon="bi bi-inboxes-fill">Productos combinados por nuevo precio</option>
+                            <option value="estudiantes" data-icon="fa-solid fa-graduation-cap">Descuento para Estudiantes</option>
+                        </select>
+                    </div>
+                </div>
+        
+                <!-- Campo Tipo de Descuento -->
+                <div class="form-group mb-3">
+                    <label>Tipo de Descuento:</label><br>
+                    <div>
+                        <input type="radio" id="percentageOff" name="tipoDescuento" value="percentage">
+                        <label for="percentageOff">Porcentaje de descuento (%)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="amountOff" name="tipoDescuento" value="amount">
+                        <label for="amountOff">Monto de descuento ($)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="freeItem" name="tipoDescuento" value="free_item">
+                        <label for="freeItem">Producto gratuito</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="newPrice" name="tipoDescuento" value="new_price">
+                        <label for="newPrice">Nuevo precio ($)</label>
+                    </div>
+                </div>
+        
+                <!-- Prestablecidas-->
+                <div class="form-group mb-3">
+                    <label for="amountOff">Nombre de la Promoción:</label>
+                    <input type="text" id="amountOff" name="amountOff" class="form-control" placeholder="Ejemplo: Descuento de Verano">
+                </div>
+        
+                <!-- Porcentaje de descuento (solo visible si se selecciona la opción 'Porcentaje de descuento (%)') -->
+                <div id="porcentajeDescuento">
+                    <div class="form-group mb-3">
+                        <label for="porcentaje" class="form-label">Porcentaje (%):</label>
+                        <div class="input-group">
+                            <span class="input-group-text">%</span>
+                            <input type="text" name="porcentaje" id="porcentaje" class="form-control">
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Monto de descuento (solo visible si se selecciona la opción 'Monto de descuento ($)') -->
+                <div id="montoDescuento">
+                    <div class="form-group mb-3">
+                        <label for="precio" class="form-label">Monto (MXN):</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" name="precio" id="precio" class="form-control">
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Selección de Producto (solo visible si se selecciona la opción 'Artículo gratuito') -->
+                <div id="productoDiv">
+                    <div class="form-group mb-3">
+                        <label for="producto">Selecciona un producto</label>
+                        <select id="producto" name="producto" class="form-control">
+                            {% for producto in productos %}
+                                <option value="{{ producto.pk }}">{{ producto.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+        
+                <!-- Nuevo Precio (solo visible si se selecciona la opción 'Nuevo precio ($)') -->
+                <div id="nuevoPrecioDiv">
+                    <div class="form-group mb-3">
+                        <label for="nuevoPrecio" class="form-label">Nuevo Precio (MXN):</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" name="nuevoPrecio" id="nuevoPrecio" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Campos condicionales-->
+                    <div id="descuento" class="conditional" style="display:none;">
+                        <!-- Opciones para descuento directo -->
+                        <p>Descuento directo aplicado a un producto.</p>
+                        <div class="form-group mb-3">
+                            <label for="producto">Producto</label>
+                            <select id="producto" name="producto" class="form-control">
+                                {% for producto in productos %}
+                                    <option value="{{ producto.pk }}">{{ producto.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="unico_uso" class="conditional" style="display:none;">
+                        <!-- Opciones para promoción de un solo uso -->
+                        <p>Esta promoción es válida solo para un uso.</p>
+                    </div>
+
+                    <div id="cierto_tiempo" class="conditional" style="display:none;">
+                        <!-- Opciones para promoción válida por tiempo -->
+                        <label for="fechaInicio">Fecha de inicio:</label>
+                        <input type="date" id="fechaInicio" name="fechaInicio" class="form-control">
+                        <label for="fechaFinal">Fecha final:</label>
+                        <input type="date" id="fechaFinal" name="fechaFinal" class="form-control">
+                        <br>
+                    </div>
+
+                    <div id="dias_especificos" class="conditional" style="display:none;">
+                        <!-- Opciones para promoción por días específicos -->
+                        <label>Seleccionar días de la semana:</label>
+                        <div>
+                            <input type="checkbox" id="lunes" name="diasSemana[]" value="Lunes">
+                            <label for="lunes">Lunes</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="martes" name="diasSemana[]" value="Martes">
+                            <label for="martes">Martes</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="miercoles" name="diasSemana[]" value="Miércoles">
+                            <label for="miercoles">Miércoles</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="jueves" name="diasSemana[]" value="Jueves">
+                            <label for="jueves">Jueves</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="viernes" name="diasSemana[]" value="Viernes">
+                            <label for="viernes">Viernes</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="sabado" name="diasSemana[]" value="Sábado">
+                            <label for="sabado">Sábado</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="domingo" name="diasSemana[]" value="Domingo">
+                            <label for="domingo">Domingo</label>
+                        </div>
+                        <br>
+                    </div>
+                    
+                    <div id="fecha_festiva" class="conditional" style="display:none;">
+                        <!-- Opciones para fecha festiva -->
+                        <p>Define las fechas festivas para la promoción.</p>
+                    </div>
+                    <!-- Sección de productos combinados por nuevo precio -->
+                    <div id="productos_combinados" class="conditional" style="display:none;">
+                        <label>Seleccionar productos combinados:</label>
+                        <div id="productosCombinadosDiv">
+                            <div class="form-group mb-3 producto-item">
+                                <label for="producto">Producto:</label>
+                                <select name="productos[]" class="form-control">
+                                    {% for producto in productos %}
+                                        <option value="{{ producto.pk }}">{{ producto.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Botón para agregar más productos -->
+                        <span type="button" id="addProductButton" class="text-warning" style="float: right;">
+                            <i class="bi bi-plus-circle"></i> Agregar otro producto
+                        </span>
+                        
+                        <br>
+                    </div>
+                    
+
+                    <div id="estudiantes" class="conditional" style="display:none;">
+                        <!-- Opciones para fecha festiva -->
+                        <p>Promocion para estudiantes.</p>
+                    </div>
+
+                    <div id="cupon_cantidad" class="conditional" style="display:none;">
+                        <!-- Opciones para cupón por cantidad -->
+                        <label for="cantidadMinima">Cantidad mínima de compra:</label>
+                        <input type="number" id="cantidadMinima" name="cantidadMinima" class="form-control" placeholder="Ejemplo: 1000">
+                    </div>
+
+                    <button type="submit"  class="filter-btn active">Crear Promoción</button>
+                    
+                </form>
+            </div>
+
+            <!-- JavaScript para controlar la visibilidad -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Comprobación inicial al cargar la página
+                    const selectedRadio = document.querySelector('input[name="tipoDescuento"]:checked');
+                    
+                    // Ocultar todos los divs si no hay radio seleccionado
+                    if (!selectedRadio) {
+                        document.getElementById('montoDescuento').style.display = 'none';
+                        document.getElementById('productoDiv').style.display = 'none';
+                        document.getElementById('nuevoPrecioDiv').style.display = 'none';
+                        document.getElementById('porcentajeDescuento').style.display = 'none';
+                    }
+            
+                    // Añadir el listener para cada radio después de la comprobación inicial
+                    const radios = document.querySelectorAll('input[name="tipoDescuento"]');
+                    radios.forEach(radio => {
+                        radio.addEventListener('change', function() {
+                            const selectedRadio = document.querySelector('input[name="tipoDescuento"]:checked');
+                            if (selectedRadio) {
+                                // Mostrar u ocultar los divs según el tipo de descuento seleccionado
+                                if (document.getElementById('percentageOff').checked) {
+                                    document.getElementById('porcentajeDescuento').style.display = 'block';
+                                    document.getElementById('montoDescuento').style.display = 'none';
+                                    document.getElementById('productoDiv').style.display = 'none';
+                                    document.getElementById('nuevoPrecioDiv').style.display = 'none';
+                                } else if (document.getElementById('amountOff').checked) {
+                                    document.getElementById('montoDescuento').style.display = 'block';
+                                    document.getElementById('productoDiv').style.display = 'none';
+                                    document.getElementById('nuevoPrecioDiv').style.display = 'none';
+                                    document.getElementById('porcentajeDescuento').style.display = 'none';
+                                } else if (document.getElementById('freeItem').checked) {
+                                    document.getElementById('productoDiv').style.display = 'block';
+                                    document.getElementById('montoDescuento').style.display = 'none';
+                                    document.getElementById('nuevoPrecioDiv').style.display = 'none';
+                                    document.getElementById('porcentajeDescuento').style.display = 'none';
+                                } else if (document.getElementById('newPrice').checked) {
+                                    document.getElementById('nuevoPrecioDiv').style.display = 'block';
+                                    document.getElementById('montoDescuento').style.display = 'none';
+                                    document.getElementById('productoDiv').style.display = 'none';
+                                    document.getElementById('porcentajeDescuento').style.display = 'none';
+                                }
+                            } else {
+                                // Si no hay radio seleccionado, ocultar todos los divs
+                                document.getElementById('montoDescuento').style.display = 'none';
+                                document.getElementById('productoDiv').style.display = 'none';
+                                document.getElementById('nuevoPrecioDiv').style.display = 'none';
+                                document.getElementById('porcentajeDescuento').style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            </script>
+
+        
+            <script>
+                function showPromoOptions() {
+                    // Ocultar todas las secciones condicionales
+                    const conditionals = document.querySelectorAll('.conditional');
+                    conditionals.forEach(element => element.style.display = 'none');
+            
+                    // Obtener el valor seleccionado en el tipo de promoción
+                    const select = document.getElementById('promoType');
+                    const promoType = select.value;
+            
+                    // Obtener los elementos de radio de tipo de descuento
+                    const percentageOff = document.getElementById("percentageOff");
+                    const amountOff = document.getElementById("amountOff");
+                    const freeItem = document.getElementById("freeItem");
+                    const newPrice = document.getElementById("newPrice");
+            
+                    // Divs condicionales específicos
+                    const descuentoDiv = document.getElementById("descuento");
+                    const productosCombinadosDiv = document.getElementById("productos_combinados");
+                    const ciertoTiempoDiv = document.getElementById("cierto_tiempo");
+                    const diasEspecificosDiv = document.getElementById("dias_especificos");
+                    const fechaFestivaDiv = document.getElementById("fecha_festiva");
+                    const estudiantesDiv = document.getElementById("estudiantes");
+            
+                    // Mostrar la sección de descuento directo si el tipo de promoción es "descuento"
+                    if (promoType === "descuento") {
+                        descuentoDiv.style.display = "block";
+                        percentageOff.disabled = false;
+                        amountOff.disabled = false;
+                        freeItem.disabled = true;
+                        newPrice.disabled = true;
+                    } 
+                    // Mostrar la sección de productos combinados por nuevo precio
+                    else if (promoType === "productos_combinados") {
+                        productosCombinadosDiv.style.display = "block";
+                        percentageOff.disabled = true;
+                        amountOff.disabled = true;
+                        freeItem.disabled = true;
+                        newPrice.disabled = false;
+                    } 
+                    // Mostrar la sección de "Promoción válida por cierto tiempo"
+                    else if (promoType === "cierto_tiempo") {
+                        ciertoTiempoDiv.style.display = "block";
+                        percentageOff.disabled = false;
+                        amountOff.disabled = false;
+                        freeItem.disabled = false;
+                        newPrice.disabled = false;
+                    }
+                    // Mostrar la sección de "Promoción válida por días específicos"
+                    else if (promoType === "dias_especificos") {
+                        diasEspecificosDiv.style.display = "block";
+                        percentageOff.disabled = false;
+                        amountOff.disabled = false;
+                        freeItem.disabled = false;
+                        newPrice.disabled = false;
+                    }
+                    // Mostrar la sección de "Promoción en fecha festiva"
+                    else if (promoType === "fecha_festiva") {
+                        fechaFestivaDiv.style.display = "block";
+                        percentageOff.disabled = false;
+                        amountOff.disabled = false;
+                        freeItem.disabled = false;
+                        newPrice.disabled = false;
+                    }
+                    // Mostrar la sección de "Descuento para Estudiantes"
+                    else if (promoType === "estudiantes") {
+                        estudiantesDiv.style.display = "block";
+                        percentageOff.disabled = false;
+                        amountOff.disabled = false;
+                        freeItem.disabled = false;
+                        newPrice.disabled = false;
+                    }
+            
+                    // Actualizar el ícono
+                    const selectedOption = select.options[select.selectedIndex];
+                    const iconClass = selectedOption.getAttribute('data-icon');
+                    const promoIcon = document.getElementById('promoIcon');
+                    
+                    if (iconClass) {
+                        promoIcon.className = iconClass; // Cambia la clase del ícono
+                    }
+                }
+            
+                // Llamar a la función cuando la página cargue, por si ya hay una selección
+                document.addEventListener("DOMContentLoaded", showPromoOptions);
+            
+                // Agregar un evento a los radios para que oculten todos los divs cuando ninguno esté seleccionado
+                document.querySelectorAll('input[name="tipoDescuento"]').forEach(radio => {
+                    radio.addEventListener('change', showPromoOptions);
+                });
+            
+                // Función para agregar más productos
+                document.getElementById('addProductButton').addEventListener('click', function() {
+                    const productosCombinadosDiv = document.getElementById('productosCombinadosDiv');
+                    const newProductDiv = document.createElement('div');
+                    newProductDiv.classList.add('form-group', 'mb-3', 'producto-item');
+            
+                    newProductDiv.innerHTML = `
+                        <label for="producto">Producto:</label>
+                        <select name="productos[]" class="form-control">
+                            {% for producto in productos %}
+                                <option value="{{ producto.pk }}">{{ producto.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    `;
+                    
+                    productosCombinadosDiv.appendChild(newProductDiv);
+                });
+            </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

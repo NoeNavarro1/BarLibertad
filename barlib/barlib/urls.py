@@ -9,4 +9,5 @@ urlpatterns = [
     path('principal/', include('apps.principal.urls')),
     path('home/', include('apps.home.urls')),
     path('ordenes/', include('apps.ordenes.urls')),
+    path('mesas/', include('apps.Mesas.urls')),
     ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

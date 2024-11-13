@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordenes</title>
+    <title>Mesas</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <!-- Estilo personalizado -->
-    <link rel="stylesheet" href="{% static 'ordenes/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mesas/styles.css' %}">
 </head>
 <body>
     <div class="d-flex">
@@ -33,13 +33,13 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#ordersSubmenu">
                         <i class="fas fa-shopping-cart"></i>
                         <span> Ordenes</span>
                     </a>
                     <!-- Submenú para Orders -->
-                    <ul class="collapse show list-unstyled" id="ordersSubmenu" aria-expanded="true">
-                        <li><a class="nav-link ms-3 text-warning {% if request.path == '/' %}active{% endif %}" href="{% url 'ordenes:ordenes' %}">Pendientes</a></li>
+                    <ul class="collapse list-unstyled" id="ordersSubmenu" >
+                        <li><a class="nav-link ms-3 {% if request.path == '/' %}active{% endif %}" href="{% url 'ordenes:ordenes' %}">Pendientes</a></li>
                         <li><a class="nav-link ms-3" href="#">Completas</a></li>
                         <li><a class="nav-link ms-3" href="#">Canceladas</a></li>
                     </ul>
@@ -57,12 +57,12 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#mesaSubmenu" >
+                    <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#mesaSubmenu" >
                         <i class="bi bi-grid-1x2-fill"></i>
                         <span> Mesas</span>
                     </a>
                     <!-- Submenú para Mesas -->
-                    <ul class="collapse list-unstyled" id="mesaSubmenu">
+                    <ul class="collapse show list-unstyled" id="mesaSubmenu" aria-expanded="true">
                         <li><a class="nav-link ms-3 text-warning {% if request.path == '/' %}active{% endif %}" href="{% url 'mesas:mesas' %}">Piso 1</a></li>
                         <li><a class="nav-link ms-3" href="#">Piso 2</a></li>
                         <li><a class="nav-link ms-3" href="#">Piso 3</a></li>
@@ -93,84 +93,87 @@
         <!-- Contenido principal -->
         <div class="container-fluid p-4">
             <!-- Barra superior -->
-            <div class="barra-superior d-flex justify-content-between align-items-center mb-4">
+            <div class="barra-superior d-flex justify-content-end align-items-center p-3 mb-4">
+                <span class="usuario-nombre ms-2">Primer Piso</span>
+                <!-- Iconos y menú de usuario -->
                 <div class="d-flex align-items-center ms-auto">
-                    <img src="{% static 'user.png' %}" alt="User Image" class="rounded-circle" width="40" height="40">
+                    <button class="btn notification-btn position-relative me-3">
+                        <i class="bi bi-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">1</span>
+                    </button>
+                    <img src="{% static 'user.png' %}" alt="User Image" class="rounded-circle" width="35" height="35">
                     <span class="usuario-nombre ms-2">Lorelei Leon</span>
-                    <div class="dropdown ms-3">
+                    <div class="dropdown ms-2">
                         <button class="btn bi-chevron-down" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Opción 1</a></li>
-                            <li><a class="dropdown-item" href="#">Opción 2</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">Option 1</a></li>
+                            <li><a class="dropdown-item" href="#">Option 2</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <h1 class="my-4">Pendientes</h1>
-            <div class="order-container">
-                <div class="order-list">
-                    <div class="order-status">
-                        <button class="active">Comer aqui</button>
-                        <button>Para llevar</button>
+        
+            <div class="top-bar">
+                <button class="toggle active">Adentro</button>
+                <button class="toggle">Terrasa</button>
+                <div class="date-time">
+                    <input type="date" value="2022-06-28">
+                    <input type="time" value="11:30">
+                    <a href="{% url 'mesas:crear_mesa' %}">
+                        <button class="filter-btn active"><i class="bi bi-plus-circle"></i>Crear Mesa</button>
+                    </a>
+                </div>
+            </div>
+            
+            
+            <div class="main-content">
+                <!-- Table Selection Section -->
+                {% load custom_filters %}
+                <div class="tables-section">
+                    <div class="container">
+                        <div class="d-flex flex-wrap">
+                            {% for mesa in mesas %}
+                                <div class="table
+                                    {% if mesa.estado == 'libre' %}free{% elif mesa.estado == 'reservada' %}reserved{% elif mesa.estado == 'ocupada' %}checked-in{% endif %}">
+                                    <div class="chairs" style="grid-template-columns: repeat({{ mesa.capacidad }}, 1fr)">
+                                        {% for _ in mesa.capacidad|times %}
+                                            <div class="chair"></div>
+                                        {% endfor %}
+                                    </div>
+                                    <span>{{ mesa.nombre }}</span><br>{{ mesa.hora }}
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div class="order-card active">
-                        <div class="order-info">
-                            <p>Orden : #907653</p>
-                            <p>Mesa : T1</p>
-                            <p>Piso : P2</p>
-                        </div>
-                        <div class="order-meta">
-                            <p>20:30pm</p>
-                            <p class="price">$40.49</p>
-                            <button class="dine-in">Comer aquí</button>
-                        </div>
+    
+                    <!-- Legend and Counter -->
+                    <div class="table-legend">
+                        <span class="legend free">Libre: {{ mesas_libres }}</span>
+                        <span class="legend reserved">Reservado: {{ mesas_reservadas }}</span>
+                        <span class="legend checked-in">En uso: {{ mesas_ocupadas }}</span>
                     </div>
-                    <div class="order-card active">
-                        <div class="order-info">
-                            <p>Orden : #907654</p>
-                            <p>Mesa : T2</p>
-                            <p>Piso: P3</p>
-                        </div>
-                        <div class="order-meta">
-                            <p>22:30pm</p>
-                            <p class="price">$58.79</p>
-                            <button class="dine-in">Comer aqui</button>
-                        </div>
-                    </div>
-                    <!-- Add more order cards as needed -->
+                    
                 </div>
         
-                <div class="order-details">
-                    <h4>Orden ID: #907653</h4>
-                    <p>Mesa: T1</p>
-                    <p>Piso: P2</p>
-                    <div class="order-items">
-                        <div class="item">
-                            <p>Azulito</p>
-                            <p>Nota: Sin alchol</p>
-                            <p>$2.87 x 4 <span>$11.48</span></p>
-                        </div>
-                        <div class="item">
-                            <p>American Favorite</p>
-                            <p>Crust: Stuffed Crust Sosis</p>
-                            <p>Extras: Extra Mozarella</p>
-                            <p>$4.87 x 1 <span>$4.87</span></p>
-                        </div>
-                        <!-- Add more items as needed -->
+                <!-- Reservation List Section -->
+                <div class="reservation-list">
+                    <input type="text" placeholder="Search">
+                    <div class="status-filter">
+                        <button class="filter-btn active">Reservado (6)</button>
+                        <button class="filter-btn">Mesa (3)</button>
                     </div>
-                    <div class="summary">
-                        <p>Items(7): <span>$28.67</span></p>
-                        <p>Tax (10%): <span>$2.86</span></p>
-                        <p class="total">Total: <span>$31.53</span></p>
+                    <ul class="reservations">
+                        <li>11:30am<br><strong>T1</strong> Jhon ciena - 5 personas</li>
+                        <li>11:30am<br><strong>T3</strong> Kathryn - 4 personas</li>
+                        <li>11:30am<br><strong>T7</strong> Donald - 3 personas</li>
+                        <li>07:30pm<br><strong>T6</strong> Jane Cooper - 5 personas</li>
+                        <!-- More list items as needed -->
+                    </ul>
+                    <div class="actions">
+                        <button class="cancel">Cancelar</button>
+                        <button class="check-in">Registrar</button>
                     </div>
-                    <div class="payment-methods">
-                        <p>Payment Methods</p>
-                        <button>Cash</button>
-                        <button>Debit Card</button>
-                        <button>E-Wallet</button>
-                    </div>
-                    <button class="pay-button">Pay Bills</button>
                 </div>
             </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
