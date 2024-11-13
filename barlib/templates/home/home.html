@@ -85,17 +85,20 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-cog"></i> <span>Configuracion</span></a>
+
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-cog"></i> <span>Configuración</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-sign-out"></i> Salir</a>
+                    <a class="nav-link text-dark" href="{% url 'logout' %}"><i class="fas fa-sign-out"></i>Salir</a>
                 </li>
+                
             </ul>
         </nav>
 
         <!-- Contenido principal -->
         <div class="container-fluid p-4">
             <!-- Barra superior -->
+
             <div class="barra-superior d-flex justify-content-between align-items-center p-3 mb-4">
                 <!-- Barra de búsqueda -->
                 <form action="{% url 'home:home' %}" method="get">
@@ -116,6 +119,7 @@
                             <li><a class="dropdown-item" href="#">Option 1</a></li>
                             <li><a class="dropdown-item" href="#">Option 2</a></li>
                             <li><a class="dropdown-item" href="#">Log out</a></li>
+
                         </ul>
                     </div>
                 </div>
